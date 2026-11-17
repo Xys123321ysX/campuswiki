@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Wiki | Student Information Portal</title>
+
+    <style>
+        :root {
+            --primary: #175cd3;
+            --dark: #102a56;
+            --light: #f4f8ff;
+            --text: #27364b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: #f6f9fe;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #344563;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #102c61, #1765d4);
+            color: white;
+            padding: 95px 24px;
+        }
+
+        .hero-content {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: #bad8ff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            max-width: 740px;
+            margin: 16px 0;
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 18px;
+            color: #e2ecff;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 22px;
+            background: white;
+            color: var(--primary);
+            padding: 13px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #eaf2ff;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 65px 24px;
+        }
+
+        .section-title {
+            color: var(--dark);
+            font-size: 31px;
+            margin: 0 0 10px;
+        }
+
+        .section-description {
+            color: #64748b;
+            margin-bottom: 32px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #e5ecf7;
+            box-shadow: 0 5px 20px rgba(20,60,120,0.04);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            background: #e9f1ff;
+            border-radius: 12px;
+            font-size: 25px;
+        }
+
+        .card h3 {
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #65758e;
+            font-size: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e9f1ff;
+            color: #175cd3;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-panel {
+            background: linear-gradient(135deg, #eaf3ff, #d7e8ff);
+            padding: 40px;
+            border-radius: 18px;
+        }
+
+        .about-panel h3 {
+            color: var(--dark);
+            font-size: 25px;
+        }
+
+        .resources {
+            background: #f0f5fc;
+        }
+
+        .resource-item {
+            padding: 20px 24px;
+            margin-bottom: 14px;
+            background: white;
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        .resource-item strong {
+            color: var(--dark);
+        }
+
+        footer {
+            background: #102a56;
+            color: #cbd8eb;
+            text-align: center;
+            padding: 35px 20px;
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 65px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">Campus Wiki</div>
+
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#explore">Explore</a>
+                <a href="#about">About</a>
+                <a href="#resources">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">Your Campus Knowledge Hub</div>
+
+                <h1>Discover, Learn and Connect.</h1>
+
+                <p>
+                    Welcome to Campus Wiki, a student-friendly
+                    information portal designed to help you
+                    explore campus life, discover learning resources,
+                    and stay connected with your academic community.
+                </p>
+
+                <a href="#explore" class="btn">Explore Campus Wiki</a>
+            </div>
+        </section>
+
+        <section class="container" id="explore">
+            <span class="tag">EXPLORE</span>
+            <h2 class="section-title">Everything You Need in One Place</h2>
+
+            <p class="section-description">
+                Discover helpful information about student life,
+                academic activities and campus services.
+            </p>
+
+            <div class="grid">
+
+                <article class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Academic Resources</h3>
+                    <p>
+                        Explore study materials, academic guidance,
+                        project information and useful learning tips.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Campus Life</h3>
+                    <p>
+                        Learn about student organizations,
+                        campus activities and opportunities
+                        for personal development.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">📅</div>
+                    <h3>Events & Activities</h3>
+                    <p>
+                        Discover academic events, student
+                        activities and opportunities to
+                        participate in campus communities.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Technology Hub</h3>
+                    <p>
+                        Explore programming, web development,
+                        software engineering and emerging
+                        technologies.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Student Support</h3>
+                    <p>
+                        Find helpful guidance for studying,
+                        managing campus responsibilities
+                        and improving student experiences.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Global Learning</h3>
+                    <p>
+                        Explore international perspectives,
+                        collaborative learning and cultural
+                        exchange opportunities.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container about-content">
+
+                <div>
+                    <span class="tag">ABOUT THE PROJECT</span>
+                    <h2 class="section-title">Built for Curious Students</h2>
+
+                    <p>
+                        Campus Wiki is a demonstration web application
+                        developed using Java and the Spring Boot framework.
+                    </p>
+
+                    <p>
+                        The project introduces the fundamental concepts
+                        of web application development, including
+                        server-side execution, HTML structure,
+                        CSS styling and responsive interface design.
+                    </p>
+
+                    <p>
+                        Its goal is to provide an accessible,
+                        organized and welcoming starting point
+                        for exploring campus-related information.
+                    </p>
+                </div>
+
+                <div class="about-panel">
+                    <span class="tag">PROJECT TECHNOLOGIES</span>
+                    <h3>Modern Web Development</h3>
+
+                    <p><strong>Backend:</strong> Java 21</p>
+                    <p><strong>Framework:</strong> Spring Boot 4.0.9</p>
+                    <p><strong>Frontend:</strong> HTML5 & CSS3</p>
+                    <p><strong>Build Tool:</strong> Apache Maven</p>
+                    <p><strong>IDE:</strong> Visual Studio Code</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="resources" id="resources">
+            <div class="container">
+
+                <span class="tag">LEARNING CENTER</span>
+                <h2 class="section-title">Learning Resources</h2>
+
+                <p class="section-description">
+                    A selection of topics for students beginning
+                    their journey in software development.
+                </p>
+
+                <div class="resource-item">
+                    <strong>Java Programming</strong>
+                    <p>
+                        Understand object-oriented programming,
+                        classes, methods and application logic.
+                    </p>
+                </div>
+
+                <div class="resource-item">
+                    <strong>Spring Boot Fundamentals</strong>
+                    <p>
+                        Learn how Spring Boot simplifies the
+                        development of Java web applications.
+                    </p>
+                </div>
+
+                <div class="resource-item">
+                    <strong>HTML & CSS Development</strong>
+                    <p>
+                        Create structured web pages with
+                        responsive layouts and modern visual design.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <strong>Campus Wiki</strong>
+        <p>Student Information Portal | BIT235 Object Oriented Programming</p>
+        <p>Developed as a Spring Boot Web Application Project</p>
+        <p>&copy; 2026 Campus Wiki. Educational demonstration project.</p>
+    </footer>
+
+</body>
+</html>
